@@ -70,22 +70,34 @@ jobs:
         run: |
           # Construye la ruta dinámica según lo que elegiste en el input
           BASE_PATH="tests/${{ inputs.portal }}/${{ inputs.ambiente }}/${{ inputs.servicio }}"
-
+      
           echo "Ruta de ejecución: $BASE_PATH"
-
+      
+          # Validar que la carpeta exista
+          if [ ! -d "$BASE_PATH" ]; then
+            echo "❌ La ruta no existe: $BASE_PATH"
+            exit 1
+          fi
+      
           # Si el usuario puso ALL → ejecuta todos los .py
           if [ "${{ inputs.test_file }}" = "ALL" ]; then
             echo "Ejecutando TODOS los tests..."
-
-            # Recorre todos los archivos .py en la carpeta
+      
             for file in $BASE_PATH/*.py; do
               echo "Ejecutando $file"
-              python "$file"
+              xvfb-run python "$file"
             done
-
+      
           else
-            # Si se especificó un archivo → ejecuta solo ese
             echo "Ejecutando test individual..."
-
-            python "$BASE_PATH/${{ inputs.test_file }}"
+      
+            FILE="$BASE_PATH/${{ inputs.test_file }}"
+      
+            # Validar que el archivo exista
+            if [ ! -f "$FILE" ]; then
+              echo "❌ Archivo no existe: $FILE"
+              exit 1
+            fi
+      
+            xvfb-run python "$FILE"
           fi
