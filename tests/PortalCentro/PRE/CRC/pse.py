@@ -229,7 +229,8 @@ async def main():
         pin = await obtener_pin_yopmail(
             p, 
             correo, 
-            logger=logger
+            logger=logger,
+            screenshot_dir=SCREENSHOT_DIR
             )
 
         tiempo_total = time.time() - start_time #Finaliza captura de tiempos

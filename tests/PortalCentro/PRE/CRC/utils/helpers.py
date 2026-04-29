@@ -100,9 +100,9 @@ def generar_pdf_con_portada(tiempo_total, carpeta=None, archivo_pdf=None, archiv
         # Generar PDF con todas las capturas y portada personalizada
 
 
-async def obtener_pin_yopmail(p, correo, timeout=20, logger=None):
+async def obtener_pin_yopmail(p, correo, timeout=20, logger=None, screenshot_dir=None):
     browser = await p.chromium.launch(
-        headless=False,
+        headless=True,
         args=["--start-maximized"]
     )
 
@@ -157,7 +157,7 @@ async def obtener_pin_yopmail(p, correo, timeout=20, logger=None):
                                     else:
                                         print(f"✅ PIN encontrado: {pin_encontrado}")
 
-                                    captura_pantalla("captura13")
+                                    await captura_pantalla(page, "captura15", screenshot_dir)
 
                                     await context.close()
                                     await browser.close()
@@ -183,7 +183,7 @@ async def obtener_pin_yopmail(p, correo, timeout=20, logger=None):
     else:
         print("❌ No se encontró el PIN")
 
-    captura_pantalla("captura14")
+    await captura_pantalla(page, "captura15", screenshot_dir)
 
     await context.close()
     await browser.close()

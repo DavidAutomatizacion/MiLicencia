@@ -31,6 +31,7 @@ cleanup_logs(LOG_DIR, max_files=5)
 # Crear nombre único basado en fecha y hora de ejecución
 timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
 log_filename = f"{timestamp}.log"
+os.makedirs(LOG_DIR, exist_ok=True)
 LOG_FILE = os.path.join(LOG_DIR, log_filename)
 
 def get_logger(name="log") -> logging.Logger:
