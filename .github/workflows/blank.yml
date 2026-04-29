@@ -56,16 +56,14 @@ jobs:
           pip install playwright            # instala playwright
           playwright install               # instala navegadores (chromium, etc)
 
-      - name: Ver estructura de carpetas
+      - name: Instalar entorno gráfico
         run: |
-          echo "📁 Estructura completa:"
-          ls -R
-
-      - name: Verificar ruta específica
+          sudo apt-get update
+          sudo apt-get install -y xvfb
+      
+      - name: Ejecutar con display virtual
         run: |
-          BASE_PATH="tests/${{ inputs.portal }}/${{ inputs.ambiente }}/${{ inputs.servicio }}"
-          echo "Buscando en: $BASE_PATH"
-          ls "$BASE_PATH" || echo "❌ Ruta no existe"
+          xvfb-run python "$BASE_PATH/${{ inputs.test_file }}"
 
       # Ejecuta los tests según parámetros
       - name: Ejecutar tests
