@@ -60,10 +60,6 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y xvfb
-      
-      - name: Ejecutar con display virtual
-        run: |
-          xvfb-run python "$BASE_PATH/${{ inputs.test_file }}"
 
       # Ejecuta los tests según parámetros
       - name: Ejecutar tests
