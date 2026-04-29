@@ -99,3 +99,12 @@ jobs:
       
             xvfb-run python "$FILE"
           fi
+      - name: Subir evidencias
+        uses: actions/upload-artifact@v4
+        with:
+          name: evidencias-tests
+          path: |
+            tests/**/screenshot/
+            tests/**/logs/
+            tests/**/*.pdf
+          if-no-files-found: warn
