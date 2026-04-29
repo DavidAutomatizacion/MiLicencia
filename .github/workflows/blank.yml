@@ -10,7 +10,7 @@ on:
       portal:
         description: "Portal"
         required: true
-        default: "Ciudadano"
+        default: "PortalCentro"
 
       # Parámetro: Ambiente (PRE o PRO)
       ambiente:
