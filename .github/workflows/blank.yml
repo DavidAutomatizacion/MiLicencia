@@ -1,0 +1,80 @@
+# Nombre del workflow (así lo verás en la pestaña Actions)
+name: Run Tests
+
+# Define cuándo se ejecuta el workflow
+on:
+  # Permite ejecutarlo manualmente desde la UI de GitHub
+  workflow_dispatch:
+    inputs:
+      # Parámetro: Portal (ej: Ciudadano)
+      portal:
+        description: "Portal"
+        required: true
+        default: "Ciudadano"
+
+      # Parámetro: Ambiente (PRE o PRO)
+      ambiente:
+        description: "Ambiente"
+        required: true
+        default: "PRE"
+
+      # Parámetro: Servicio (CEA o CRC)
+      servicio:
+        description: "Servicio"
+        required: true
+        default: "CEA"
+
+      # Parámetro: archivo específico o ALL
+      test_file:
+        description: "Archivo de test (ej: pse.py) o ALL"
+        required: true
+        default: "ALL"
+
+# Aquí empiezan los jobs (trabajos que ejecuta el workflow)
+jobs:
+  run-tests:
+    # Tipo de máquina virtual donde correrá (Linux)
+    runs-on: ubuntu-latest
+
+    steps:
+      # Descarga tu repositorio dentro del runner
+      - name: Clonar repositorio
+        uses: actions/checkout@v4
+
+      # Instala Python en la máquina
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.14.3"
+
+      # Instala dependencias del proyecto
+      - name: Instalar dependencias
+        run: |
+          pip install -r requirements.txt   # librerías de tu proyecto
+          pip install playwright            # instala playwright
+          playwright install               # instala navegadores (chromium, etc)
+
+      # Ejecuta los tests según parámetros
+      - name: Ejecutar tests
+        run: |
+          # Construye la ruta dinámica según lo que elegiste en el input
+          BASE_PATH="tests/${{ inputs.portal }}/${{ inputs.ambiente }}/${{ inputs.servicio }}"
+
+          echo "Ruta de ejecución: $BASE_PATH"
+
+          # Si el usuario puso ALL → ejecuta todos los .py
+          if [ "${{ inputs.test_file }}" = "ALL" ]; then
+            echo "Ejecutando TODOS los tests..."
+
+            # Recorre todos los archivos .py en la carpeta
+            for file in $BASE_PATH/*.py; do
+              echo "Ejecutando $file"
+              python "$file"
+            done
+
+          else
+            # Si se especificó un archivo → ejecuta solo ese
+            echo "Ejecutando test individual..."
+
+            python "$BASE_PATH/${{ inputs.test_file }}"
+          fi
