@@ -31,7 +31,9 @@ on:
         default: "ALL"
 
 # Aquí empiezan los jobs (trabajos que ejecuta el workflow)
+
 jobs:
+
   run-tests:
     # Tipo de máquina virtual donde correrá (Linux)
     runs-on: ubuntu-latest
@@ -53,6 +55,17 @@ jobs:
           pip install -r requirements.txt   # librerías de tu proyecto
           pip install playwright            # instala playwright
           playwright install               # instala navegadores (chromium, etc)
+
+      - name: Ver estructura de carpetas
+        run: |
+          echo "📁 Estructura completa:"
+          ls -R
+
+      - name: Verificar ruta específica
+        run: |
+          BASE_PATH="tests/${{ inputs.portal }}/${{ inputs.ambiente }}/${{ inputs.servicio }}"
+          echo "Buscando en: $BASE_PATH"
+          ls "$BASE_PATH" || echo "❌ Ruta no existe"
 
       # Ejecuta los tests según parámetros
       - name: Ejecutar tests
