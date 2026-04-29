@@ -1,4 +1,4 @@
-import asyncio, random, time
+import asyncio, random, time, os
 from faker import Faker
 from playwright.async_api import async_playwright, expect
 from utils.helpers import generar_documento, captura_pantalla, generar_pdf_con_portada, obtener_pin_yopmail
@@ -29,6 +29,19 @@ dia = str(fecha_nacimiento.day)
 mes = str(fecha_nacimiento.month)
 año = str(fecha_nacimiento.year)
 
+
+timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+
+BASE_PATH = os.path.join(
+    "tests", "PortalCentro", "PRE", "CRC", "runs", timestamp
+)
+
+SCREENSHOT_DIR = os.path.join(BASE_PATH, "screenshot")
+LOG_DIR = os.path.join(BASE_PATH, "logs")
+
+os.makedirs(SCREENSHOT_DIR, exist_ok=True)
+os.makedirs(LOG_DIR, exist_ok=True)
+
 async def seleccionar_crc(page):
     try:
         popup_body = page.locator("#popup-info-whatsapp .popup-modal-body")
@@ -40,7 +53,7 @@ async def seleccionar_crc(page):
         except:
             pass  # no apareció, continua normal
 
-        captura_pantalla("captura01")
+        await captura_pantalla(page, "captura01", SCREENSHOT_DIR)
 
         await page.locator("main.centros_main").click(timeout=60000)
 
@@ -84,7 +97,7 @@ async def main():
         await btn.wait_for(state="visible", timeout=10000)
         await btn.click()
 
-        captura_pantalla("captura02")
+        await captura_pantalla(page, "captura02", SCREENSHOT_DIR)
 
         await page.get_by_role("radio", name=genero).click()
         await page.fill("#day", dia)
@@ -98,7 +111,7 @@ async def main():
         btnSiguiente = page.locator("button.button-primary", has_text="Siguiente")
         await btnSiguiente.wait_for(state="visible")
 
-        captura_pantalla("captura03")
+        await captura_pantalla(page, "captura03", SCREENSHOT_DIR)
 
         await btnSiguiente.click()
 
@@ -107,7 +120,7 @@ async def main():
         await page.click("text=Siguiente")
         await page.click("text=Automóviles, cuatrimotos, camionetas y microbuses")
         
-        captura_pantalla("captura04")
+        await captura_pantalla(page, "captura04", SCREENSHOT_DIR)
         
         await page.click("text=Siguiente")
         
@@ -122,7 +135,7 @@ async def main():
         await page.locator("span.slider").click()
         await page.wait_for_timeout(1000)
 
-        captura_pantalla("captura05")
+        await captura_pantalla(page, "captura05", SCREENSHOT_DIR)
 
         await page.click("text=Siguiente")
         
@@ -136,13 +149,13 @@ async def main():
         await page.locator("#tipoDocumentoFE").select_option(label=tipo_documento)
         await page.fill("#documentoFE", documento)
 
-        captura_pantalla("captura06")
+        await captura_pantalla(page, "captura06", SCREENSHOT_DIR)
 
         await page.click("text=Siguiente")
 
         #await page.click("text= Pago único de")
 
-        captura_pantalla("captura07")
+        await captura_pantalla(page, "captura07", SCREENSHOT_DIR)
 
         await page.click("text=Siguiente")
         await page.locator("label:text('PSE')").click()
@@ -150,7 +163,7 @@ async def main():
         # Selección "BANCO UNION COLOMBIANO" value 1022
         await page.locator("select#banco").select_option("1022")
         
-        captura_pantalla("captura08")
+        await captura_pantalla(page, "captura08", SCREENSHOT_DIR)
         
         await page.click("text=Continuar")
         
@@ -158,7 +171,7 @@ async def main():
         await page.locator("label:text('Acepto los términos y condiciones')").click()
         await page.click("text= Pagar con PSE ")
                
-        captura_pantalla("captura09")
+        await captura_pantalla(page, "captura09", SCREENSHOT_DIR)
 
         #================================
         # Formulario prueba PSE
@@ -170,7 +183,7 @@ async def main():
         await page.locator("button#btnSeguir").click()
         await page.locator("input#btnPay").click()
         await page.locator("h6", has_text="Resumen del Pago").wait_for()
-        captura_pantalla("captura09")
+        await captura_pantalla(page, "captura09", SCREENSHOT_DIR)
         await page.locator("input#VolverComercio").click()
 
         #================================
@@ -186,7 +199,7 @@ async def main():
         except Exception as e:
             logger.error(f"No se pudo capturar el PIN: {e}")
         
-        captura_pantalla("captura10")
+        await captura_pantalla(page, "captura10", SCREENSHOT_DIR)
 
         await page.click("text=Volver al sitio")
 
@@ -204,7 +217,7 @@ async def main():
         # Llenar un campo con la fecha actual
         await page.fill("#fechaCompra", fecha_actual)
 
-        captura_pantalla("captura11")
+        await captura_pantalla(page, "captura11", SCREENSHOT_DIR)
 
         await page.locator("button.button-primary", has_text="Continuar").click()
 
@@ -221,7 +234,7 @@ async def main():
 
         tiempo_total = time.time() - start_time #Finaliza captura de tiempos
         logger.info(f"⏱️ Tiempo total    : {tiempo_total:.2f} segundos") #Imprime tiempos en consola
-        captura_pantalla("captura15")
+        await captura_pantalla(page, "captura15", SCREENSHOT_DIR)
         
         #====================================   
         # CAPTURAS PDF

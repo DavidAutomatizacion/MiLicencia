@@ -13,12 +13,18 @@ def generar_documento(maxDigitos=10):
 
 
 # === Función para capturar pantalla completa ===
-def captura_pantalla(nombre_base, carpeta="screenshot/Pin_pdp_crc_centro"):
+async def captura_pantalla(page, nombre_base, carpeta):
+    import os
+    from datetime import datetime
+
     os.makedirs(carpeta, exist_ok=True)
-    ruta = os.path.join(carpeta, f"{nombre_base}.png")
-    screenshot = pyautogui.screenshot()
-    screenshot.save(ruta)
-    print(f"✅ Captura guardada: {ruta}")
+
+    nombre = f"{nombre_base}_{datetime.now().strftime('%H-%M-%S')}"
+    ruta = os.path.join(carpeta, f"{nombre}.png")
+
+    await page.screenshot(path=ruta, full_page=True)
+
+    print(f"📸 Captura guardada: {ruta}")
 
 # === Función para generar PDF con portada desde archivo ===
 
