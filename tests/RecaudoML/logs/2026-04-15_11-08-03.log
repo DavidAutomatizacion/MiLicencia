@@ -1,0 +1,12 @@
+2026-04-15 11:08:03 | RECAUDO_PIN | INFO | Recaudando PIN: 939405841412482
+2026-04-15 11:08:03 | RECAUDO_PIN | INFO | Autenticando en API...
+2026-04-15 11:08:03 | RECAUDO_PIN | INFO | Payload login: {'Username': 'PruebaEs1', 'Password': 'PruebaEs1'}
+2026-04-15 11:08:03 | RECAUDO_PIN | INFO | Recaudando via API...
+2026-04-15 11:08:03 | RECAUDO_PIN | INFO | Código de respuesta:, 200
+2026-04-15 11:08:03 | RECAUDO_PIN | INFO | Respuesta del servicio:
+2026-04-15 11:08:03 | RECAUDO_PIN | INFO | "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IlBydWViYUVzMSIsIm5iZiI6MTc3NjI2OTI4MywiZXhwIjoxNzc2MzU1NjgzLCJpYXQiOjE3NzYyNjkyODMsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6NDkyMjAiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjQ5MjIwIn0.awXUrebJn58XrN4rG0lGY1TXtcMMbZ2cEPKyzrnqy0o"
+2026-04-15 11:08:03 | RECAUDO_PIN | INFO | Payload: {'IdCliente': 3, 'Data': {'TipoIdentificacion': 1, 'NumeroIdentificacion': '1134568019', 'NumeroPin': '939405841412482', 'FechaTransaccion': '2026-04-15T10:09:03.444Z', 'NumeroAutorizacion': 0, 'ValorTransaccion': 200000, 'IdRunt': '9080701230', 'IdConvenio': 16}}
+2026-04-15 11:08:03 | RECAUDO_PIN | INFO | Recaudando via API...
+2026-04-15 11:08:07 | RECAUDO_PIN | INFO | Código de respuesta:, 200
+2026-04-15 11:08:07 | RECAUDO_PIN | INFO | Respuesta del servicio:
+2026-04-15 11:08:07 | RECAUDO_PIN | INFO | {"Codigo":0,"Respuesta":"Exitoso","NumeroAuditoria":"e3112d60-6ca9-4b70-b1a7-7b17e9001306","Entidad":null}

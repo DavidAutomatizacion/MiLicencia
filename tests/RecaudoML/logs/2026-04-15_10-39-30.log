@@ -1,0 +1,7 @@
+2026-04-15 10:39:30 | RECAUDO_PIN | INFO | Recaudando PIN: ('939405841412482',)
+2026-04-15 10:39:30 | RECAUDO_PIN | INFO | Autenticando en API...
+2026-04-15 10:39:30 | RECAUDO_PIN | INFO | Payload login: {'Username': 'PruebaEs1', 'Password': 'PruebaEs1'}
+2026-04-15 10:39:30 | RECAUDO_PIN | INFO | Recaudando via API...
+2026-04-15 10:39:31 | RECAUDO_PIN | INFO | Código de respuesta:, 200
+2026-04-15 10:39:31 | RECAUDO_PIN | INFO | Respuesta del servicio:
+2026-04-15 10:39:31 | RECAUDO_PIN | INFO | "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IlBydWViYUVzMSIsIm5iZiI6MTc3NjI2NzU3MSwiZXhwIjoxNzc2MzUzOTcxLCJpYXQiOjE3NzYyNjc1NzEsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6NDkyMjAiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjQ5MjIwIn0.mnKWzf2FUtZrDOt4s4i2OqiA6ZQHABaFstFu3hEOP_k"

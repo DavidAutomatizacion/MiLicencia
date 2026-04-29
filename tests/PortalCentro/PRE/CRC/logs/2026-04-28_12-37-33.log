@@ -1,0 +1,5 @@
+2026-04-28 12:37:34 | log | INFO | Iniciando el proceso de automatización con Playwright
+2026-04-28 12:38:55 | log | ERROR | No se pudo capturar el PIN: Locator.wait_for: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("h3.nombre").filter(has_text="PIN generado") to be visible
+

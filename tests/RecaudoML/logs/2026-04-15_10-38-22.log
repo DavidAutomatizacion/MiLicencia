@@ -1,0 +1,13 @@
+2026-04-15 10:38:22 | RECAUDO_PIN | INFO | Recaudando PIN: ('939405841412482',)
+2026-04-15 10:38:22 | RECAUDO_PIN | INFO | Autenticando en API...
+2026-04-15 10:38:22 | RECAUDO_PIN | INFO | Payload login: {'Username': 'PruebaEs1', 'Password': 'PruebaEs1'}
+2026-04-15 10:38:22 | RECAUDO_PIN | INFO | Recaudando via API...
+2026-04-15 10:38:23 | RECAUDO_PIN | INFO | Código de respuesta:, 200
+2026-04-15 10:38:23 | RECAUDO_PIN | INFO | Respuesta del servicio:
+2026-04-15 10:38:23 | RECAUDO_PIN | INFO | "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IlBydWViYUVzMSIsIm5iZiI6MTc3NjI2NzUwMywiZXhwIjoxNzc2MzUzOTAzLCJpYXQiOjE3NzYyNjc1MDMsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6NDkyMjAiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjQ5MjIwIn0.ngYOLO-1ykaMYOwMDN1WFw-bldYo_C_gjlmcB8XGEPA"
+2026-04-15 10:38:23 | RECAUDO_PIN | INFO | Token obtenido: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IlBydWViYUVzMSIsIm5iZiI6MTc3NjI2NzUwMywiZXhwIjoxNzc2MzUzOTAzLCJpYXQiOjE3NzYyNjc1MDMsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6NDkyMjAiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjQ5MjIwIn0.ngYOLO-1ykaMYOwMDN1WFw-bldYo_C_gjlmcB8XGEPA"
+2026-04-15 10:38:23 | RECAUDO_PIN | INFO | Payload: {'IdCliente': 3, 'Data': {'TipoIdentificacion': 1, 'NumeroIdentificacion': '1134568019', 'NumeroPin': ('939405841412482',), 'FechaTransaccion': '2026-04-15T10:09:03.444Z', 'NumeroAutorizacion': 0, 'ValorTransaccion': 200000, 'IdRunt': '9080701230', 'IdConvenio': 16}}
+2026-04-15 10:38:23 | RECAUDO_PIN | INFO | Recaudando via API...
+2026-04-15 10:38:23 | RECAUDO_PIN | INFO | Código de respuesta:, 500
+2026-04-15 10:38:23 | RECAUDO_PIN | INFO | Respuesta del servicio:
+2026-04-15 10:38:23 | RECAUDO_PIN | INFO | 
